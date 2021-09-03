@@ -1,0 +1,182 @@
+﻿@model IEnumerable<Example_Project.Models.Employee>
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+    <script src="~/Content/JavaScript.js"></script>
+    
+
+</head>
+<body>
+    <form action="AddEmployee" method="post">
+        <h4>Employee Registration</h4>
+        <br />
+        <div class="form-group row">
+            <label for=" EmployeeName" class="col-sm-2 col-form-label">Employee Name *:</label>
+            <div class="col-sm-3">
+                <input type="text" name="EmployeeName" class="form-control" id=" " required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Designation" class="col-sm-2 col-form-label">Designation:</label>
+            <div class="col-sm-3">
+                <select class="form-control" name="Designation" id=" ">
+                    <option></option>
+                    <option>CEO</option>
+                    <option>Projrct Manager</option>
+                    <option>Team Leader</option>
+                    <option>Technical Head</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Salary" class="col-sm-2 col-form-label">Salary *:</label>
+            <div class="col-sm-3">
+               <input type="number" name="Salary"  class="form-control"  id="" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Email" class="col-sm-2 col-form-label">Email *:</label>
+            <div class="col-sm-3">
+              <input type="email" name="Email" class="form-control" id=" " required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Mobile" class="col-sm-2 col-form-label">Mobile *:</label>
+            <div class="col-sm-3">
+                <input type="tel" name="Mobile" @*pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"*@ class="form-control" id=" " required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Admission_Date" class="col-sm-2 col-form-label">Qualification:</label>
+            <div class="col-sm-3">
+                <select class="form-control" name="Qualification" id="city">
+                    <option></option>
+                    <option>BCA</option>
+                    <option>MCA</option>
+                    <option>Btech</option>
+                    <option>Mtech</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Hospital" class="col-sm-2 col-form-label">Manager:</label>
+            <div class="col-sm-3">
+                <input type="text" name="Manager" class="form-control" id=" ">
+            </div>
+            </div>
+         
+       
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Register <b>Employee</b></h2>
+                        </div>
+                       
+                    </div>
+                </div>
+
+
+
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th>
+                            Employee Name
+                        </th>
+
+                        <th>
+                            Designation
+                        </th>
+                        <th>
+                            Salary
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Mobile
+                        </th>
+                        <th>
+                            Qualification
+                        </th>
+                        <th>
+                            Manager
+                        </th>
+                        <th>Remarks</th>
+                    </tr>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Designation)
+                            </td>
+                            <td>
+                                <p>&#x20b9; 
+                                @Html.DisplayFor(modelItem => item.Salary)
+                                </p>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Mobile)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Qualification)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Manager)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeId})
+
+                                @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId })
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+
+            </div>
+        </div>
+       
+      
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
